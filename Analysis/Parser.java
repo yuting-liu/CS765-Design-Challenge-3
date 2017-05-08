@@ -23,6 +23,8 @@ public class Parser {
 	HashMap<Integer, List<Assignment>> discussions = new HashMap<>();
 	HashMap<Integer, List<Assignment>> seekfinds = new HashMap<>();
 	
+	private int num_disc = 0, num_sf = 0;
+	
 	/* Constructor */
 	public Parser(BufferedReader buff) {
 		String line = null;
@@ -38,6 +40,13 @@ public class Parser {
 				// first line: attribute names
 				if(count == 0) {
 					attributes.addAll(Arrays.asList(words));
+					for(String word : words) {
+						if(word.startsWith("Disc")) {
+							num_disc++;
+						} else if(word.startsWith("Seek")) {
+							num_sf++;
+						}
+					}
 				} 
 				// other lines: tuples
 				else {
@@ -120,6 +129,14 @@ public class Parser {
 			System.exit(1);
 		}
 	
+	}
+	
+	public int get_discussion_num() {
+		return num_disc;
+	}
+	
+	public int get_seekandfind_num() {
+		return num_sf;
 	}
 	
 	public void print() {

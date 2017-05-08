@@ -1,2 +1,6 @@
 Number of students:
-12
+20
+Number of discussions:
+10
+Number of seek-and-finds:
+10

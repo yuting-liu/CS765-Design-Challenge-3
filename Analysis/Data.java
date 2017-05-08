@@ -51,12 +51,16 @@ public class Data {
 		
 	}
 	
-	public Stirng getContent(Parser parser) {
+	public static String getContent(Parser parser) {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("Number of students:\n").append(parser.firstnames.size()).append("\n");
 		
-		sb.append("Number of discussions:\n").append()
+		sb.append("Number of discussions:\n").append(parser.get_discussion_num()).append("\n");
+		
+		sb.append("Number of seek-and-finds:\n").append(parser.get_seekandfind_num()).append("\n");
+		
+		return sb.toString();
 		
 	}
 }
