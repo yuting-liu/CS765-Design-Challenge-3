@@ -53,7 +53,7 @@ public class Parser {
 					// name
 					String subword = words[0].substring(1, words[0].length() - 1);
 					String[] names = subword.split(",");
-					String firstName = names[1];
+					String firstName = names[1].substring(1);
 					String lastName = names[0];
 					
 					// id

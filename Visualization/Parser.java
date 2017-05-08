@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Parser {
 	private int rows, num_disc = 0, num_seek_finds = 0;
+	private int[][] array;
 	public Parser() {
 		BufferedReader br = null;
 		
@@ -24,9 +25,14 @@ public class Parser {
 				} else if(count == 4) {
 					num_disc = Integer.parseInt(line);
 				} else if(count == 6) {
-					num_disc = Integer.parseInt(line);
+					num_seek_finds = Integer.parseInt(line);
+					array = new int[rows][num_disc + num_seek_finds];
+				} else if(count > 6){
+					String[] words = line.split(" ");
+					for(int i = 2; i < words.length; ++i) {
+						array[count - 7][i - 2] = Integer.parseInt(words[i]);
+					}
 				}
-				
 				
 			}
 		} catch (IOException e) {
@@ -45,5 +51,9 @@ public class Parser {
 	
 	public int get_seek_finds_num() {
 		return num_seek_finds;
+	}
+	
+	public int[][] get_array() {
+		return array;
 	}
 }

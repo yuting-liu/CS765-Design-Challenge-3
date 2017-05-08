@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.util.List;
+
 public class Data {
 	public static void main(String[] args) {
 		// argument error
@@ -35,7 +37,7 @@ public class Data {
 		
 		
 		// write the result
-		String output_path = "../Data/output.txt";
+		String output_path = "./Data/output.txt";
 		BufferedWriter bw = null;
 		
 		try {
@@ -59,6 +61,20 @@ public class Data {
 		sb.append("Number of discussions:\n").append(parser.get_discussion_num()).append("\n");
 		
 		sb.append("Number of seek-and-finds:\n").append(parser.get_seekandfind_num()).append("\n");
+		
+		for(int id : parser.firstnames.keySet()) {
+			sb.append(parser.firstnames.get(id));
+			sb.append(" ").append(parser.lastnames.get(id));
+			List<Assignment> list_disc = parser.discussions.get(id);
+			for(Assignment a : list_disc) {
+				sb.append(" ").append(a.get_grade());
+			}
+			List<Assignment> list_sf = parser.seekfinds.get(id);
+			for(Assignment a : list_sf) {
+				sb.append(" ").append(a.get_grade());
+			}
+			sb.append("\n");
+		}
 		
 		return sb.toString();
 		
