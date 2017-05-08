@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Parser {
+public class CSVParser {
 	
 	// attribute list
 	ArrayList<String> attributes = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Parser {
 	private int num_disc = 0, num_sf = 0;
 	
 	/* Constructor */
-	public Parser(BufferedReader buff) {
+	public CSVParser(BufferedReader buff) {
 		String line = null;
 		int count = 0;
 		
@@ -128,7 +128,6 @@ public class Parser {
 			System.err.println("File reader fails!");
 			System.exit(1);
 		}
-	
 	}
 	
 	public int get_discussion_num() {

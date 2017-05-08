@@ -25,11 +25,11 @@ public class Data {
 		BufferedReader br = null;
 		
 		// Parser
-		Parser parser = null;
+		CSVParser parser = null;
 		
 		try {
 			br = new BufferedReader(new FileReader(file_path));
-			parser = new Parser(br);
+			parser = new CSVParser(br);
 		} catch (IOException e) {
 			System.err.println("File not found!");
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class Data {
 		
 	}
 	
-	public static String getContent(Parser parser) {
+	public static String getContent(CSVParser parser) {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("Number of students:\n").append(parser.firstnames.size()).append("\n");

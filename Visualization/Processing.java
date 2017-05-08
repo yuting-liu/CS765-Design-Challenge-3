@@ -5,20 +5,24 @@
 
 import processing.core.PApplet;
 import java.io.*;
+import java.util.*;
 
 public class Processing extends PApplet {
 	static Cell[][] grid;
 	static int cols, num_disc, num_sf, rows;
 	static int[][] array;
-	static int NAME_WIDTH = 50, CELL_WIDTH = 20, LABEL_HEIGHT = 20;
+	static String[] firstnames, lastnames;
+	static int NAME_WIDTH = 100, CELL_WIDTH = 20, LABEL_HEIGHT = 20;
 	static int TEXT_MARGIN_WIDTH = 5, TEXT_MARGIN_HEIGHT = 10;
 	public static void main(String[] args) {
-		Parser parser = new Parser();
+		MetadataParser parser = new MetadataParser();
 		rows = parser.get_rows();
 		num_disc = parser.get_discussion_num();
 		num_sf = parser.get_seek_finds_num();
 		cols = num_disc + num_sf;
 		array = parser.get_array();
+		firstnames = parser.get_firstnames();
+		lastnames = parser.get_lastnames();
 		PApplet.main("Processing");
 	}
 	public void settings() {
@@ -40,12 +44,21 @@ public class Processing extends PApplet {
 	}
 	public void draw() {
 		background(255);
-		  // The counter variables i and j are also the column and row numbers and 
-		  // are used as arguments to the constructor for each object in the grid.  
-		  for (int i = 0; i < rows; i++) {
-		    for (int j = 0; j < cols; j++) {
-		      grid[i][j].display();
-		    }
+
+		// Print students' names.
+		for (int i = 0; i < cols; i++) {
+			text(firstnames[i] + " " + lastnames[i],
+					 0,
+					 CELL_WIDTH * i + TEXT_MARGIN_HEIGHT);
+		}
+
+	  // The counter variables i and j are also the column and row numbers and 
+	  // are used as arguments to the constructor for each object in the grid.  
+	  for (int i = 0; i < rows; i++) {
+	    for (int j = 0; j < cols; j++) {
+	      grid[i][j].display();
+	    }
+
 			textSize(8);
 			fill(0);
 			if(i < num_disc) {
@@ -57,7 +70,7 @@ public class Processing extends PApplet {
 					i * CELL_WIDTH + TEXT_MARGIN_WIDTH + NAME_WIDTH,
 					CELL_WIDTH * rows + TEXT_MARGIN_HEIGHT);
 			}
-		  }
+	  }
 	}
 	
 	public void read() {
