@@ -28,13 +28,13 @@ rm -rf ./Visualization/*.class
 
 
 echo "Compilation of visualization: start"
-javac -cp .:/home/shixuan/Documents/CS765/processing-3.3.3/core/library/core.jar ./Visualization/*.java
+javac -cp .:${JAR_PATH} ./Visualization/*.java
 echo ""
 
 echo "Get visualization: start"
-java -cp ./Visualization:/home/shixuan/Documents/CS765/processing-3.3.3/core/library/core.jar Processing
+java -cp ./Visualization:${JAR_PATH} Processing
 echo ""
 
 # clean up
-#rm -rf ./Analysis/*.class
-#rm -rf ./Visualization/*.class
+rm -rf ./Analysis/*.class
+rm -rf ./Visualization/*.class
