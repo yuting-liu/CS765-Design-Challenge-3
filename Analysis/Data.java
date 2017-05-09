@@ -42,7 +42,9 @@ public class Data {
 		
 		try {
 			bw = new BufferedWriter(new FileWriter(output_path));
-			bw.write(getContent(parser));
+			String name = args[0];
+			String[] words = name.split("/");
+			bw.write(getContent(parser, words[words.length - 1]));
 			
 			bw.close();
 			
@@ -53,8 +55,10 @@ public class Data {
 		
 	}
 	
-	public static String getContent(CSVParser parser) {
+	public static String getContent(CSVParser parser, String name) {
 		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Name:\n").append(name).append("\n");
 		
 		sb.append("Number of students:\n").append(parser.firstnames.size()).append("\n");
 		

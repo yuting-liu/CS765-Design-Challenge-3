@@ -12,7 +12,8 @@ public class MetadataParser {
 	private int[][] array;
 	private String[] firstnames;
 	private String[] lastnames;
-	private final int HEADER_ROWS = 6;
+	private final int HEADER_ROWS = 8;
+	private String filename = "";
 	public MetadataParser() {
 		BufferedReader br = null;
 		
@@ -23,10 +24,12 @@ public class MetadataParser {
 			while((line = br.readLine()) != null) {
 				
 				if(count == 1) {
-					rows = Integer.parseInt(line);
+					filename = line;
 				} else if(count == 3) {
-					num_disc = Integer.parseInt(line);
+					rows = Integer.parseInt(line);
 				} else if(count == 5) {
+					num_disc = Integer.parseInt(line);
+				} else if(count == 7) {
 					num_seek_finds = Integer.parseInt(line);
 					array = new int[rows][num_disc + num_seek_finds];
 					firstnames = new String[rows];
@@ -71,6 +74,10 @@ public class MetadataParser {
 	
 	public int[][] get_array() {
 		return array;
+	}
+	
+	public String get_filename() {
+		return filename;
 	}
 
 }

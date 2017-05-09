@@ -2,7 +2,7 @@
 
 if [ "$1" == "" ]; then
 	echo "usage: source run.sh <path_to_csv>"
-	return
+	exit
 fi
 
 export FILE_PATH=$1

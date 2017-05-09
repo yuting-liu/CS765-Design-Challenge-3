@@ -14,6 +14,8 @@ public class Processing extends PApplet {
 	static String[] firstnames, lastnames;
 	static int NAME_WIDTH = 100, CELL_WIDTH = 20, LABEL_HEIGHT = 20;
 	static int TEXT_MARGIN_WIDTH = 5, TEXT_MARGIN_HEIGHT = 10;
+    static int RIGHT_MARGIN = 10;
+	static String filename = "";
 	public static void main(String[] args) {
 		MetadataParser parser = new MetadataParser();
 		rows = parser.get_rows();
@@ -23,13 +25,14 @@ public class Processing extends PApplet {
 		array = parser.get_array();
 		firstnames = parser.get_firstnames();
 		lastnames = parser.get_lastnames();
+		filename = parser.get_filename();
 		PApplet.main("Processing");
 	}
 	public void settings() {
 		//size(500, 500);
 		// surface.setResizable(true);
 		// fullScreen();
-		size(CELL_WIDTH * cols + NAME_WIDTH, CELL_WIDTH * rows + LABEL_HEIGHT);
+		size(CELL_WIDTH * cols + NAME_WIDTH + RIGHT_MARGIN, CELL_WIDTH * rows + LABEL_HEIGHT);
 		
 	}
 	public void setup() {
@@ -47,31 +50,35 @@ public class Processing extends PApplet {
 		background(255);
 
 		// Print students' names.
-		for (int i = 0; i < cols; i++) {
+		for (int i = 0; i < rows; i++) {
 			text(firstnames[i] + " " + lastnames[i],
 					 0,
 					 CELL_WIDTH * i + TEXT_MARGIN_HEIGHT);
 		}
 
-	  // The counter variables i and j are also the column and row numbers and 
-	  // are used as arguments to the constructor for each object in the grid.  
-	  for (int i = 0; i < rows; i++) {
-	    for (int j = 0; j < cols; j++) {
-	      grid[i][j].display();
-	    }
+	  	// The counter variables i and j are also the column and row numbers and 
+	  	// are used as arguments to the constructor for each object in the grid.  
+	  	for (int j = 0; j < cols; j++) {
+	    	for (int i = 0; i < rows; i++) {
+	    		grid[i][j].display();
+	    	}
 
 			textSize(8);
 			fill(0);
-			if(i < num_disc) {
-				text("D" + Integer.toString(i + 1),
-					i * CELL_WIDTH + TEXT_MARGIN_WIDTH + NAME_WIDTH, 
+			if(j < num_disc) {
+				text("D" + Integer.toString(j + 1),
+					j * CELL_WIDTH + TEXT_MARGIN_WIDTH + NAME_WIDTH, 
 					CELL_WIDTH * rows + TEXT_MARGIN_HEIGHT);
 			} else {
-				text("A" + Integer.toString(i - num_disc + 1), 
-					i * CELL_WIDTH + TEXT_MARGIN_WIDTH + NAME_WIDTH,
+				text("A" + Integer.toString(j - num_disc + 1), 
+					j * CELL_WIDTH + TEXT_MARGIN_WIDTH + NAME_WIDTH,
 					CELL_WIDTH * rows + TEXT_MARGIN_HEIGHT);
 			}
-	  }
+	  	}
+		
+		String path = "Image/";
+		saveFrame(path + filename + ".png");
+		
 	}
 	
 	public void read() {
