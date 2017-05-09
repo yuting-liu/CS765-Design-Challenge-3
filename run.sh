@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ "$2" == "" ]; then
-	echo "usage: source run.sh <path_to_core.jar> <path_to_csv>"
+if [ "$1" == "" ]; then
+	echo "usage: source run.sh <path_to_csv>"
 	return
 fi
 
 export FILE_PATH=$2
 
-export JAR_PATH=.:$1
+export JAR_PATH=.:./Assets/core.jar
 
 # remove all class file in Analysis
 rm -rf ./Analysis/*.class
