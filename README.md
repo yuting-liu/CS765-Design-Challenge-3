@@ -1,8 +1,8 @@
 # CS765-Design-Challenge-3
-#####Author: Shixuan Fan and Yuting Liu
-##I. Introduction
+##### Author: Shixuan Fan and Yuting Liu
+## I. Introduction
 Our Java application will take a CSV file as input and output a png file.
-##II. Instruction
+## II. Instruction
 1. `cd DC3_shixuan_yuting`
 2. `source run.sh <path_to_csv_file>`
 We have three files in `Data/` folder.
