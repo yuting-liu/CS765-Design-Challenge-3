@@ -17,7 +17,7 @@ public class MetadataParser {
 		BufferedReader br = null;
 		
 		try {
-			br = new BufferedReader(new FileReader("../Data/output.txt"));
+			br = new BufferedReader(new FileReader("Data/output.txt"));
 			String line = null;
 			int count = 0;
 			while((line = br.readLine()) != null) {

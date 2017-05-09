@@ -43,6 +43,7 @@ public class Processing extends PApplet {
 		
 	}
 	public void draw() {
+		frame.setTitle("Grade Heatmap");
 		background(255);
 
 		// Print students' names.
@@ -76,7 +77,7 @@ public class Processing extends PApplet {
 	public void read() {
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("../Data/output.txt"));
+			br = new BufferedReader(new FileReader("Data/output.txt"));
 		} catch (IOException e) {
 			System.err.println("File not found!");
 			e.printStackTrace();

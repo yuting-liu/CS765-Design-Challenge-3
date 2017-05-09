@@ -1,12 +1,13 @@
 #!/bin/bash
 
-export FILE_PATH=/u/s/h/shixuan/Documents/CS765/Design_Challenge_3/CS765-Design-Challenge-3/Data/20x10.csv
+if [ "$2" == "" ]; then
+	echo "usage: source run.sh <path_to_core.jar> <path_to_csv>"
+	return
+fi
 
-export JAR_PATH=.:/u/s/h/shixuan/Documents/CS765/Design_Challenge_3/processing-3.3.3/core/library/core.jar
+export FILE_PATH=$2
 
-# export FILE_PATH=~/Documents/CS765/DesignChallenge3/Data/20x10.csv
-
-# export JAR_PATH=.:/Applications/Processing.app/Contents/Java/core/library/core.jar
+export JAR_PATH=.:$1
 
 # remove all class file in Analysis
 rm -rf ./Analysis/*.class
@@ -27,16 +28,13 @@ rm -rf ./Visualization/*.class
 
 
 echo "Compilation of visualization: start"
-cd ./Visualization
-javac -cp ${JAR_PATH} *.java
+javac -cp .:/home/shixuan/Documents/CS765/processing-3.3.3/core/library/core.jar ./Visualization/*.java
 echo ""
 
 echo "Get visualization: start"
-java -cp ${JAR_PATH} Processing
+java -cp ./Visualization:/home/shixuan/Documents/CS765/processing-3.3.3/core/library/core.jar Processing
 echo ""
 
-cd ..
-
 # clean up
-rm -rf ./Analysis/*.class
-rm -rf ./Visualization/*.class
+#rm -rf ./Analysis/*.class
+#rm -rf ./Visualization/*.class
