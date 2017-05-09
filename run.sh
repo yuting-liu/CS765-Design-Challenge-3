@@ -5,7 +5,7 @@ if [ "$1" == "" ]; then
 	return
 fi
 
-export FILE_PATH=$2
+export FILE_PATH=$1
 
 export JAR_PATH=.:./Assets/core.jar
 
